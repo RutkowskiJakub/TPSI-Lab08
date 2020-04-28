@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +21,13 @@ public class CalculatorController {
     }
     
     @PostMapping("/add")
-    public String addNumbers(Model model, CalculatorForm form) {
-        int result = calculatorService.add(form.getX(), form.getY());
+    public String addNumbers(Model model, CalculatorForm form, BindingResult binding) {
+        if (binding.hasErrors())
+        {
+            return "add";
+        }
         
+        int result = calculatorService.add(form.getX(), form.getY());
         form.setOperation("+");
         model.addAttribute("result", result);
         return "result";
