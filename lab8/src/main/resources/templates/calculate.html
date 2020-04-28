@@ -12,14 +12,22 @@
 
             <div>
                 <h2>Power feature (płatny toolbox)</h2>
-                <form action="/calculate" method="post">
-                    x = <input type="text" name="x" value="2" />
-                    y = <input type="text" name="y" value="2" />
+                <form action="/calculate" method="post" th:object="${calculatorForm}">
+                    x = <input type="text" th:field="*{x}" th:errorClass="error" />
+                    <span th:if="${#fields.hasErrors('x')}" th:errors="*{x}">Błędne dane</span>
+                    
+                    <br></br>
+                    
+                    y = <input type="text" th:field="*{y}" th:errorClass="error"/>
+                    <span th:if="${#fields.hasErrors('y')}" th:errors="*{y}">Błędne dane</span>
+                    
+                    <br></br>
                     <select name="operation">
                         <option selected="true">+</option>
                         <option>-</option>
                         <option>*</option>
                     </select>
+                    <br></br>
                     <input type="submit" value="Oblicz" />
                 </form>
             </div>

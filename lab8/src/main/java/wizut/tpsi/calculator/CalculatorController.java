@@ -34,16 +34,23 @@ public class CalculatorController {
     }
 
     @PostMapping("/multiply")
-    public String multiplyNumbers(Model model, CalculatorForm form) {
+    public String multiplyNumbers(Model model, CalculatorForm form, BindingResult binding) {
+        if (binding.hasErrors())
+        {
+            return "multiply";
+        }
         int result = calculatorService.multiply(form.getX(), form.getY());
-        
         form.setOperation("*");
         model.addAttribute("result", result);
         return "result";
     }
 
     @PostMapping("/calculate")
-    public String doCalculations(Model model, CalculatorForm form) {
+    public String doCalculations(Model model, CalculatorForm form, BindingResult binding) {
+        if (binding.hasErrors())
+        {
+            return "calculate";
+        }
         int result = 0;
         switch(form.getOperation()) {
             case "+":

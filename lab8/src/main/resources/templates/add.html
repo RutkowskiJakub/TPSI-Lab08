@@ -16,9 +16,12 @@
                     x = <input type="text" th:field="*{x}" th:errorClass="error" />
                     <span th:if="${#fields.hasErrors('x')}" th:errors="*{x}">Błędne dane</span>
                     
+                    <br></br>
+                    
                     y = <input type="text" th:field="*{y}" th:errorClass="error"/>
                     <span th:if="${#fields.hasErrors('y')}" th:errors="*{y}">Błędne dane</span>
                     
+                    <br></br>
                     <input type="submit" value="Dodaj" />
                 </form>
             </div>   
