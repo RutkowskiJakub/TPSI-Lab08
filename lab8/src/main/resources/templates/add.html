@@ -12,9 +12,9 @@
             
             <div>
                 <h2>Dodawanie</h2>
-                <form action="/add" method="post">
-                    x = <input type="text" name="x" value="2" />
-                    y = <input type="text" name="y" value="2" />
+                <form action="/add" method="post" th:object="${calculatorForm}">
+                    x = <input type="text" th:field="*{x}" th:errorClass="error" />
+                    y = <input type="text" th:field="*{y}" th:errorClass="error"/>
                     <input type="submit" value="Dodaj" />
                 </form>
             </div>   
